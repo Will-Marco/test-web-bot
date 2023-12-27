@@ -1,3 +1,4 @@
+import { Button } from "../";
 import "./Card.css";
 
 const Card = ({ course }) => {
@@ -19,8 +20,8 @@ const Card = ({ course }) => {
       <hr className="hr" />
 
       <div className="btn__container">
-        <button>+</button>
-        <button>-</button>
+        <Button title={"+"} type={'add'}/>
+        <Button title={"-"} type={'remove'}/>
       </div>
     </div>
   );
