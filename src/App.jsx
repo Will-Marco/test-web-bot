@@ -1,18 +1,17 @@
 import { getData } from "./constants/db.js";
-import "./App.css"
+import { Card } from "./components";
+import "./App.css";
 
 const courses = getData();
 
 const App = () => {
   return (
     <>
-      <h1>All Courses</h1>
+      <h1 className="heading">All Courses</h1>
       {/* Cart */}
-      <div className="cards_container">
+      <div className="cards__container">
         {courses.map((course) => (
-          <>
-            <h3>{course.title}</h3>
-          </>
+          <Card key={course.id} course={course} />
         ))}
       </div>
     </>
