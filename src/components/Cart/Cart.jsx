@@ -1,11 +1,22 @@
 import { Button } from "../";
+import { totalPrice } from "../units/total-price";
 import "./Cart.css";
 
-const Cart = () => {
+const Cart = ({ cartItems }) => {
   return (
     <div className="cart__container">
-      <p>Umumiy narx: $12.00</p>
-      <Button type={"checkout"} title={"Buyurtma"} />
+      <p>
+        Umumiy narx:{" "}
+        {totalPrice(cartItems).toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD",
+        })}
+      </p>
+      <Button
+        type={"checkout"}
+        disabled={cartItems.length === 0 ? true : false}
+        title="Buyurtma berish"
+      />
     </div>
   );
 };
