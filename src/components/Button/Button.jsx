@@ -1,6 +1,6 @@
 import "./Button.css";
 
-const Button = ({ type, title }) => {
+const Button = ({ type, title, onClick }) => {
   return (
     <button
       className={`btn ${
@@ -8,6 +8,8 @@ const Button = ({ type, title }) => {
         (type === "remove" && "remove") ||
         (type === "checkout" && "checkout")
       }`}
+      onClick={onClick}
+    
     >
       {title}
     </button>

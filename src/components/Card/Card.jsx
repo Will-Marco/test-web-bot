@@ -1,10 +1,25 @@
+import { useState } from "react";
 import { Button } from "../";
 import "./Card.css";
 
-const Card = ({ course }) => {
+const Card = ({ course, onAddItem, onRemoveItem }) => {
+  const [count, setCount] = useState(0);
+
+  const incrementHandle = () => {
+    setCount((count) => count + 1);
+    onAddItem(course);
+  };
+
+  const decrementHandle = () => {
+    setCount((count) => count - 1);
+    onRemoveItem(course);
+  };
+
   return (
     <div className="card">
-      <span className="card__badge">1</span>
+      <span className={`${count !== 0 ? "card__badge" : "card__badge-hidden"}`}>
+        {count}
+      </span>
       <div className="image__container">
         <img src={course.Image} alt={course.title} />
       </div>
@@ -20,8 +35,10 @@ const Card = ({ course }) => {
       <hr className="hr" />
 
       <div className="btn__container">
-        <Button title={"+"} type={'add'}/>
-        <Button title={"-"} type={'remove'}/>
+        <Button title={"+"} type={"add"} onClick={incrementHandle} />
+        {count !== 0 && (
+          <Button title={"-"} type={"remove"} onClick={decrementHandle} />
+        )}
       </div>
     </div>
   );
