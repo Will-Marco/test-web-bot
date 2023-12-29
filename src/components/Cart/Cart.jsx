@@ -2,7 +2,7 @@ import { Button } from "../";
 import { totalPrice } from "../units/total-price";
 import "./Cart.css";
 
-const Cart = ({ cartItems, onCheckout }) => {
+const Cart = ({ cartItems }) => {
   return (
     <div className="cart__container">
       <p>
@@ -16,7 +16,6 @@ const Cart = ({ cartItems, onCheckout }) => {
         type={"checkout"}
         disabled={cartItems.length === 0 ? true : false}
         title="Buyurtma berish"
-        onClick={onCheckout}
       />
     </div>
   );
