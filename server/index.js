@@ -16,7 +16,23 @@ bot.on("message", async (msg) => {
   const text = msg.text;
 
   if (text === "/start") {
-    await bot.sendMessage(chatId, "Assalamu Alaykum\nYou can purchase courses on this platform", {
-    });
+    await bot.sendMessage(
+      chatId,
+      "Assalamu Alaykum\nYou can purchase courses on this platform",
+      {
+        reply_markup: {
+          keyboard: [
+            [
+              {
+                text: "Kurslarni ko'rish",
+                web_app: {
+                  url: "https://test-telegram-web-bot.vercel.app",
+                },
+              },
+            ],
+          ],
+        },
+      }
+    );
   }
 });

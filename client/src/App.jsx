@@ -37,10 +37,15 @@ const App = () => {
     }
   };
 
+  const onCheckout = () => {
+    telegram.MainButton.text = "Sotib olish :)";
+    telegram.MainButton.show();
+  };
+
   return (
     <>
       <h1 className="heading">All Courses</h1>
-      <Cart cartItems={cartItems} />
+      <Cart cartItems={cartItems} onCheckout={onCheckout} />
       <div className="cards__container">
         {courses.map((course) => (
           <Card
