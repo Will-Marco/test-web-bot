@@ -4,6 +4,7 @@ import { Card, Cart } from "./components";
 import "./App.css";
 
 const courses = getData();
+const telegram = window.Telegram.WebApp;
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -40,7 +41,6 @@ const App = () => {
   const onCheckout = () => {
     telegram.MainButton.text = "Sotib olish :)";
     telegram.MainButton.show();
-    console.log("Hi");
   };
 
   return (
