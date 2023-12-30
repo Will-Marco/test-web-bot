@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getData } from "./constants/db.js";
 import { Card, Cart } from "./components";
 import "./App.css";
@@ -44,12 +44,25 @@ const App = () => {
   };
 
   const onSendData = useCallback(() => {
-    telegram.sendData(JSON.stringify(cartItems));
+    const queryID = telegram.initDataUnsafe?.query_id;
+
+    if (queryID) {
+      fetch("https://localhost:3000/web-data", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          products: cartItems,
+          queryID: queryID,
+        }),
+      });
+    } else {
+      telegram.sendData(JSON.stringify(cartItems));
+    }
   }, [cartItems]);
 
   useEffect(() => {
     telegram.ready();
-  });
+  }, []);
 
   useEffect(() => {
     telegram.onEvent("mainButtonClicked", onSendData);
